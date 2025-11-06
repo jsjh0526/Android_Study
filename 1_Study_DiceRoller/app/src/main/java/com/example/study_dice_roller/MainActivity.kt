@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -59,6 +60,8 @@ fun DiceRollerApp() {
 @Composable
 fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
     var result by remember { mutableStateOf(1) }
+    var count by remember { mutableStateOf(0) }
+
     val imageResource = when(result){
         1 -> R.drawable.dice_1
         2 -> R.drawable.dice_2
@@ -67,18 +70,42 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
         5 -> R.drawable.dice_5
         else -> R.drawable.dice_6
     }
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        Image(
-            painter = painterResource(imageResource),
-            contentDescription = result.toString()
+
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(
+            "count: $count",
+            fontSize = 26.sp,
+            modifier = Modifier
+                .align(alignment=Alignment.TopStart)
+                .padding(start = 4.dp, top = 4.dp)
         )
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = {result = (1..6).random()}
+
+        Column(
+            modifier = modifier.align(Alignment.Center),
+            horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(stringResource(R.string.roll), fontSize = 24.sp)
+            Image(
+                painter = painterResource(imageResource),
+                contentDescription = result.toString()
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(onClick = {result = (1..6).random(); count++}
+            ){
+                Text(stringResource(R.string.roll), fontSize = 24.sp)
+            }
+        }
+        Button(
+            onClick = {count = 0},
+            modifier= Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 16.dp, end = 16.dp)
+            ) {
+            Text(
+                text = "초기화",
+                fontSize = 16.sp
+            )
         }
     }
 }
