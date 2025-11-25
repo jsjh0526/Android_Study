@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="단위 변환기"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/editText_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="변환할 값 입력"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:layout_marginBottom="8dp"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup_conversion_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+        <RadioButton
+            android:id="@+id/radio_inch_cm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인치 (in) → 센티미터 (cm)"
+            android:checked="true"/>
+        <RadioButton
+            android:id="@+id/radio_f_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="화씨 (°F) → 섭씨 (°C)"/>
+        <RadioButton
+            android:id="@+id/radio_pyeong_sqm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="평 (P) → 제곱미터 (㎡)"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button_convert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="변환"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:id="@+id/textView_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="결과"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:gravity="center"/>
+
+
+</LinearLayout>
