@@ -77,11 +77,11 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
         Text(
             "count: $count",
             fontSize = 26.sp,
+            style= MaterialTheme.typography.headlineMedium,
             modifier = Modifier
                 .align(alignment=Alignment.TopStart)
-                .padding(start = 4.dp, top = 4.dp)
+                .padding(start = 8.dp, top = 8.dp)
         )
-
         Column(
             modifier = modifier.align(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -91,7 +91,10 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
                 contentDescription = result.toString()
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = {result = (1..6).random(); count++}
+            Button(onClick = {
+                result = (1..6).random();
+                count++
+            }
             ){
                 Text(stringResource(R.string.roll), fontSize = 24.sp)
             }
@@ -100,7 +103,7 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
             onClick = {count = 0},
             modifier= Modifier
                 .align(Alignment.BottomEnd)
-                .padding(bottom = 16.dp, end = 16.dp)
+                .padding(16.dp)
             ) {
             Text(
                 text = "초기화",
