@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -148,10 +149,10 @@ fun HomeScreen(navController: NavHostController, viewModel: TodoViewModel) {
     // ViewModel에서 데이터 가져오기
     val highPriorityTodos by viewModel.highPriorityTodos.collectAsState()
 
-    // 로컬 상태 (명언, 입력창) - key 추가!
+    // 로컬 상태 (명언, 입력창)
     var currentQuote by remember { mutableStateOf("작은 발걸음도 앞으로 나아가는 것입니다.") }
-    var todoText by remember(key1 = Unit) { mutableStateOf("") }  // ← key 추가!
-    var selectedPriority by remember(key1 = Unit) { mutableStateOf(Priority.MEDIUM) }  // ← key 추가!
+    var todoText by rememberSaveable { mutableStateOf("") }
+    var selectedPriority by remember { mutableStateOf(Priority.MEDIUM) }
 
     // 명언 새로고침
     val onRefreshQuote = {
@@ -217,15 +218,13 @@ fun HomeScreen(navController: NavHostController, viewModel: TodoViewModel) {
             Spacer(modifier = Modifier.height(16.dp))
 
             // 3. 입력 섹션
-            key(todoText) {  // ← 이것도 추가!
-                AddTodoCard(
-                    text = todoText,
-                    onTextChanged = { todoText = it },
-                    selectedPriority = selectedPriority,
-                    onPrioritySelected = { selectedPriority = it },
-                    onAddClick = onAddTask
-                )
-            }
+            AddTodoCard(
+                text = todoText,
+                onTextChanged = { todoText = it },
+                selectedPriority = selectedPriority,
+                onPrioritySelected = { selectedPriority = it },
+                onAddClick = onAddTask
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -329,7 +328,10 @@ fun AddTodoCard(
                         unfocusedContainerColor = androidx.compose.ui.graphics.Color(0xFFF5F5F5),
                         focusedContainerColor = androidx.compose.ui.graphics.Color(0xFFF5F5F5),
                         focusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent,
-                        unfocusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent
+                        unfocusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent,
+                        focusedTextColor = androidx.compose.ui.graphics.Color.Black,
+                        unfocusedTextColor = androidx.compose.ui.graphics.Color.Black,
+                        cursorColor = androidx.compose.ui.graphics.Color.Black
                     ),
                     shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
                 )
