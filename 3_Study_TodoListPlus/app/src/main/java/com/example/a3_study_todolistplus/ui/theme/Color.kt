@@ -1,4 +1,4 @@
-package com.example.a3_study_todolistplus.ui.theme
+package com.example.todolistapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
